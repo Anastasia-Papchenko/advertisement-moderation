@@ -2,8 +2,8 @@ import { createStore, createEvent, createEffect } from 'effector';
 import type { CategoryOption, FiltersState } from '../../types/filters.types';
 import type { AdsResponse, ApiAd } from '../../types/model.types';
 
-const API_URL_BACK =
-  import.meta.env.VITE_API_URL_BACK ?? 'http://localhost:3001';
+const VITE_API_URL_BACK =
+  import.meta.env.VITE_VITE_API_URL_BACK ?? 'http://localhost:3001';
 
 const PAGE_SIZE = 10;
 
@@ -71,7 +71,7 @@ export const fetchAdsFx = createEffect<
   params.set('sortOrder', sortOrder);
 
   const response = await fetch(
-    `${API_URL_BACK}/api/v1/ads?${params.toString()}`
+    `${VITE_API_URL_BACK}/api/v1/ads?${params.toString()}`
   );
 
   if (!response.ok) {

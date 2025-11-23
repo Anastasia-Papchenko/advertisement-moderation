@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         element: <Item />,
         errorElement: <ErrorPage />,
         loader: async ({ params }) => {
-          const { data } = await axios.get(`${import.meta.env.API_URL_FRON}/items/${params.id}`);
+          const { data } = await axios.get(`${import.meta.env.VITE_API_URL_BACK}/items/${params.id}`);
           return data;
         }
       },

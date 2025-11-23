@@ -11,8 +11,8 @@ import { formatShortDate } from '../Stats/StatsUtils';
 const { Text } = Typography;
 const { TextArea } = Input;
 
-const API_URL_BACK =
-  import.meta.env.VITE_API_URL_BACK ?? 'http://localhost:3001';
+const VITE_API_URL_BACK =
+  import.meta.env.VITE_VITE_API_URL_BACK ?? 'http://localhost:3001';
 
 export const Item: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -42,7 +42,7 @@ export const Item: React.FC = () => {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(`${API_URL_BACK}/api/v1/ads/${id}`);
+        const res = await fetch(`${VITE_API_URL_BACK}/api/v1/ads/${id}`);
         if (!res.ok) {
           if (res.status === 404) {
             throw new Error('Объявление не найдено');
@@ -112,7 +112,7 @@ export const Item: React.FC = () => {
       setActionLoading(true);
       setActionError(null);
 
-      const res = await fetch(`${API_URL_BACK}/api/v1/ads/${id}/approve`, {
+      const res = await fetch(`${VITE_API_URL_BACK}/api/v1/ads/${id}/approve`, {
         method: 'POST',
       });
 
@@ -153,8 +153,8 @@ export const Item: React.FC = () => {
 
       const endpoint =
         mode === 'reject'
-          ? `${API_URL_BACK}/api/v1/ads/${id}/reject`
-          : `${API_URL_BACK}/api/v1/ads/${id}/request-changes`;
+          ? `${VITE_API_URL_BACK}/api/v1/ads/${id}/reject`
+          : `${VITE_API_URL_BACK}/api/v1/ads/${id}/request-changes`;
 
       const res = await fetch(endpoint, {
         method: 'POST',
