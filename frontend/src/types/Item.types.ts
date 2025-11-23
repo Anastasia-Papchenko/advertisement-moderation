@@ -1,5 +1,5 @@
 import type { REJECTION_REASONS } from "../pages/Item/ItemUtils";
-import type { AdCardProps } from "./productcard.types";
+import type { AdCardProps } from "./product_card.types";
 
 export type RejectionReason = (typeof REJECTION_REASONS)[number];
 

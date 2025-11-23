@@ -1,4 +1,4 @@
-import type { AdCardProps } from "./productcard.types";
+import type { AdCardProps } from "./product_card.types";
 
 export type ApiAd = {
   id: number;

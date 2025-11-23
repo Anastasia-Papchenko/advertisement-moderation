@@ -1,14 +1,21 @@
 import React from 'react';
-import { Card, Typography, Tag } from 'antd';
-import type { AdCardProps } from '../../types/productcard.types';
+import { Card, Typography, Tag, Checkbox } from 'antd';
+import type { ProductCardProps } from '../../types/product_card.types';
 import { formatDate, formatPrice, getPriorityStyles, getStatusStyles, priorityTextMap, statusTextMap } from './ProductCardUtils';
 import styles from './ProductCard.module.css';
 
 const { Paragraph, Text } = Typography;
 
-const ProductCard: React.FC<AdCardProps> = ({ image, title, price, category, createdAt, status, priority }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ image, title, price, category, createdAt, status, priority, showCheckbox, checked, onToggleCheckbox }) => {
   const statusText = statusTextMap[status];
   const priorityText = priorityTextMap[priority];
+
+  const handleBarClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!showCheckbox) return;
+    e.preventDefault();    
+    e.stopPropagation();
+    onToggleCheckbox?.();
+  };
 
   return (
     <Card
@@ -16,11 +23,37 @@ const ProductCard: React.FC<AdCardProps> = ({ image, title, price, category, cre
       className={styles.card}
       cover={
         <div className={styles.imageContainer}>
-          <img src={image} alt={title} loading="lazy" className={styles.image} />
+          {(showCheckbox || priority === 'urgent') && (
+            <div
+              className={`${styles.selectBar} ${
+                showCheckbox ? styles.selectBarClickable : ''
+              }`}
+              onClick={handleBarClick}
+            >
+              {showCheckbox && (
+                <Checkbox
+                  className={styles.selectCheckbox}
+                  checked={checked}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onToggleCheckbox?.();
+                  }}
+                />
+              )}
 
-          {priority === 'urgent' && (
-            <Tag className={styles.urgentTag}>Срочное</Tag>
+              {priority === 'urgent' && (
+                <Tag className={styles.urgentTag}>Срочное</Tag>
+              )}
+            </div>
           )}
+
+          <img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className={styles.image}
+          />
         </div>
       }
     >
@@ -40,12 +73,14 @@ const ProductCard: React.FC<AdCardProps> = ({ image, title, price, category, cre
         <span className={styles.statusBadge} style={getStatusStyles(status)}>
           {statusText}
         </span>
-        <span className={styles.priorityBadge} style={getPriorityStyles(priority)}>
+        <span
+          className={styles.priorityBadge}
+          style={getPriorityStyles(priority)}
+        >
           {priorityText}
         </span>
       </div>
     </Card>
-
   );
 };
 

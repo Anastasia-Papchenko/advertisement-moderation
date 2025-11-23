@@ -1,5 +1,5 @@
 import type { ColumnsType } from "antd/es/table";
-import type { AdPriority, AdStatus, HistoryRow, ModerationAction } from "../../types/Item.types";
+import type { AdPriority, AdStatus, HistoryRow, ModerationAction } from "../../types/Item.types.ts";
 
 export const REJECTION_REASONS = [
   'Запрещенный товар',

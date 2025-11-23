@@ -411,6 +411,7 @@ export const Item: React.FC = () => {
             </Button>
             <Button
               danger
+              type="primary"
               onClick={() =>
                 setPanelMode((prev) => (prev === 'reject' ? null : 'reject'))
               }
@@ -418,6 +419,11 @@ export const Item: React.FC = () => {
               Отклонить
             </Button>
             <Button
+              type="primary"
+              style={{
+                backgroundColor: '#faad14',
+                borderColor: '#faad14',
+              }}
               onClick={() =>
                 setPanelMode((prev) =>
                   prev === 'requestChanges' ? null : 'requestChanges',

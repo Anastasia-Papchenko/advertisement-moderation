@@ -1,4 +1,4 @@
-import type { AdCardProps } from "../../types/productcard.types";
+import type { AdCardProps } from "../../types/product_card.types";
 
 export const statusTextMap: Record<AdCardProps['status'], string> = {
   pending: 'На модерации',

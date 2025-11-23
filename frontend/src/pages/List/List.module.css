@@ -5,3 +5,27 @@
   padding: 24px 32px 40px;
   box-sizing: border-box;
 }
+
+
+.bulkToolbar {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cardWithCheckbox {
+  position: relative;
+}
+
+.selectCheckbox {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+  background: #fff;
+  padding: 2px 4px;
+  border-radius: 4px;
+}

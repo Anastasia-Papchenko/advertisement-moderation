@@ -7,3 +7,9 @@ export type AdCardProps = {
   status: 'pending' | 'approved' | 'rejected';
   priority: 'normal' | 'urgent';
 };
+
+export type ProductCardProps = AdCardProps & {
+  showCheckbox?: boolean;
+  checked?: boolean;
+  onToggleCheckbox?: () => void;
+};
