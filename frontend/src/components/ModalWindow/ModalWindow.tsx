@@ -8,8 +8,8 @@ import type { RejectionReason } from '../../types/Item.types';
 const { TextArea } = Input;
 const { Text } = Typography;
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3001';
+const API_URL_BACK =
+  import.meta.env.VITE_API_URL_BACK ?? 'http://localhost:3001';
 
 export const ModalWindow: React.FC<ModalWindowProps> = ({
   open,
@@ -65,7 +65,7 @@ export const ModalWindow: React.FC<ModalWindowProps> = ({
       if (mode === 'approve') {
         await Promise.all(
           selectedIds.map((id) =>
-            fetch(`${API_BASE_URL}/api/v1/ads/${id}/approve`, {
+            fetch(`${API_URL_BACK}/api/v1/ads/${id}/approve`, {
               method: 'POST',
             }),
           ),
@@ -79,7 +79,7 @@ export const ModalWindow: React.FC<ModalWindowProps> = ({
 
         await Promise.all(
           selectedIds.map((id) =>
-            fetch(`${API_BASE_URL}/api/v1/ads/${id}/reject`, {
+            fetch(`${API_URL_BACK}/api/v1/ads/${id}/reject`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

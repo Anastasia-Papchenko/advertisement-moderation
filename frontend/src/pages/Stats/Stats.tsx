@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3001';
+const API_URL_BACK =
+  import.meta.env.VITE_API_URL_BACK ?? 'http://localhost:3001';
 
 export const Stats: React.FC = () => {
   const [summary, setSummary] = useState<StatsSummary | null>(null);
@@ -30,11 +30,11 @@ export const Stats: React.FC = () => {
 
         const [summaryRes, activityRes, decisionsRes, categoriesRes] =
           await Promise.all([
-            fetch(`${API_BASE_URL}/api/v1/stats/summary?period=week`),
-            fetch(`${API_BASE_URL}/api/v1/stats/chart/activity?period=week`),
-            fetch(`${API_BASE_URL}/api/v1/stats/chart/decisions?period=week`),
+            fetch(`${API_URL_BACK}/api/v1/stats/summary?period=week`),
+            fetch(`${API_URL_BACK}/api/v1/stats/chart/activity?period=week`),
+            fetch(`${API_URL_BACK}/api/v1/stats/chart/decisions?period=week`),
             fetch(
-              `${API_BASE_URL}/api/v1/stats/chart/categories?period=week`,
+              `${API_URL_BACK}/api/v1/stats/chart/categories?period=week`,
             ),
           ]);
 
